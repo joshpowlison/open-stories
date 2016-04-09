@@ -1,7 +1,7 @@
 # Open Stories
-A lightweight, simple infinite scroll CMS for web serial novels and webcomics. Based on storieslc.com but for single-story use. No PHP or MySQL here, just HTML, CSS, JS, and AJAX!
+A lightweight, minimalist, simple infinite scroll website solution for web serial novels and webcomics. Based on storieslc.com but for single-story use. No PHP or MySQL here, just HTML, CSS, JS, and some AJAX- and even if you don't know code, getting set up is very easy!
 
-## CMS features
+## Features
 
 **Very easy to use** and since all the code's here, you can add whatever features you want! You can set up in less than 10 minutes if you know what you want.
 
