@@ -51,21 +51,21 @@ You can set this up in the info section or in the footer. You just need to call 
 ```
 <h3 class="faqQuestion">How do I create an FAQ question?</h3>
   <div>
-    <p>That's a redundancy.</p>
+    <p>That sounds like a redundancy but it's not.</p>
     <p>Also, you can have multiple lines, even images here because you're placing the answer in a div!</p>
   </div>
 ```
 
-This isn't just for frequently asked questions- it can be used for an About the Author section, Character Bios, Social Media Links, whatever you want! Remember that you can add your own custom css into styles.css and can put images into answer divs!
+This isn't just for frequently asked questions though- it can be used for an About the Author section, Character Bios, Social Media Links, whatever you want! Remember that you can add your own custom css into styles.css and can put images into answer divs!
 
-## Naming pages
+## Naming and uploading pages
 Pages are number like so: 1.html, 2.html, 3.html...
 
 But if you're using leading zeroes, make sure to ALWAYS use leading zeroes! 001.html, 002.html, 003.html...
 
-And always use the same extension- especially beware of .jpeg vs .jpg. A difference even that slight will mess with the website.
+And always use the same extension- beware especially of .jpeg vs .jpg. The website won't find files with slightly different extensions.
 
-Once you've created pages, just put them into your language folder for the website! (which by default is "en" for English)
+Once you've created pages, just put them into your language folder for the website!
 
 If you're using images, the process is the same, it's just 1.png, 2.png, 3.png instead.
 
