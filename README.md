@@ -70,6 +70,10 @@ You'll also want to update your help section and footer. The footer appears afte
 
 Open totalPages.txt and change its value to the total number of pages. Change its value whenever you want to update the number of total pages (like when a new part of your story goes live).
 
+## Updating the number of pages
+
+Just edit and reupload total-pages.txt. But be careful: people can still access your pages if they know the URLs for them, whether or not total-pages.txt includes them. If you upload pages earlier, sneaky people can easily find them.
+
 ## Setting up FAQ and answers
 
 You can set this up in the info section or in the footer. You just need to call a question and an answer by putting a class on an instance and then having a div immediately after, like this:
