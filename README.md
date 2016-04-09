@@ -117,4 +117,6 @@ There are 3 JavaScript files: one that controls general settings and is always r
 
 ## Crediting Open Stories
 
-If you use and like Open Stories, please spread the word! Feel free to include the text "Open Stories, created by Josh Powlison"
+If you use and like Open Stories, please spread the word! Feel free to include the text "Open Stories, created by Josh Powlison" on the site with a link back here, but that's not a requirement.
+
+I'd also love to hear your feedback, so send it my way!
