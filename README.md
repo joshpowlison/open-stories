@@ -36,20 +36,20 @@ With Stories, you have less work and more integrated features.
 Both are free.
 
 **Pros of Open Stories**
--Customize your site however you like
--Add features to the site not currently included
--No 10% Stories fee for user payments
--Use your own web domain
--Can use with things other than stories
--Post your story's pages whenever you want
+- Customize your site however you like
+- Add features to the site not currently included
+- No 10% Stories fee for user payments
+- Use your own web domain
+- Can use with things other than stories
+- Post your story's pages whenever you want
 
 **Pros of Stories**
--Automatic site updates
--Get new features by Josh Powlison before they're added to Open Stories
--Integrated payment system and Story Points
--storieslc.com email address and automated newsletters
--User accounts/users can save their spot across devices
--Automatically scheduled story updates
+- Automatic site updates
+- Get new features by Josh Powlison before they're added to Open Stories
+- Integrated payment system and Story Points
+- storieslc.com email address and automated newsletters
+- User accounts/users can save their spot across devices
+- Automatically scheduled story updates
 
 If you want to work with Stories instead of Open Stories, contact Josh Powlison at josh@storieslc.com.
 
