@@ -1,5 +1,5 @@
 # Open Stories
-A lightweight, minimalist, simple infinite scroll website solution for web serial novels and webcomics. Based on storieslc.com but for single-story use. No PHP or MySQL here, just HTML, CSS, JS, and some AJAX- and even if you don't know code, getting set up is very easy!
+A lightweight, minimalist, simple infinite scroll website solution for web serial novels and webcomics. Based on storieslc.com but for single-story use. Extremely easy to setup and use!
 
 ## Features
 
@@ -26,6 +26,32 @@ The below examples are from storieslc.com which *does* have some extra features 
 [0000 Is Ma Faffritt Colour of teh Alfabeht: SVG webcomic](https://storieslc.com/0000-is-ma-faffritt-colour-of-teh-alfabeht/)
 
 If you'd rather post through storieslc.com instead of with Open Stories, it's also free and you can contact Josh Powlison about it at [josh@storieslc.com](mailto:josh@storieslc.com) for more info.
+
+## Open Stories vs Stories
+
+With Open Stories, you have full control of the design and function of your website.
+
+With Stories, you have less work and more integrated features.
+
+Both are free.
+
+**Pros of Open Stories**
+-Customize your site however you like
+-Add features to the site not currently included
+-No 10% Stories fee for user payments
+-Use your own web domain
+-Can use with things other than stories
+-Post your story's pages whenever you want
+
+**Pros of Stories**
+-Automatic site updates
+-Get new features by Josh Powlison before they're added to Open Stories
+-Integrated payment system and Story Points
+-storieslc.com email address and automated newsletters
+-User accounts/users can save their spot across devices
+-Automatically scheduled story updates
+
+If you want to work with Stories instead of Open Stories, contact Josh Powlison at josh@storieslc.com.
 
 ## Setup
 
@@ -79,7 +105,16 @@ You can use `[AUTOFORMAT]` in one page and go without it in the next.
 
 That's not available right now, but you *can* add a Twitter feed with a hashtag of your story to the footer of your story. That way readers can check out a general story conversation and jump in on it too (and connect with you on Twitter)!
 
+## Hosting
+
+You gotta host your Open Stories site yourself. If you're cool with yourwebsitename.neocities.com, I strongly recommend checking out [Neocities](https://neocities.org/)- but you're limited in space, so if you're doing a webcomic you'll need something else.
+
+I strongly recommend [A Small Orange](http://asmallorange.7eer.net/c/184285/185398/3107) for story hosting, and not just cause that's an affiliate link. They're seriously boss in both prices and customer service.
+
 ## JavaScript files
+
 There are 3 JavaScript files: one that controls general settings and is always required, one that controls the type of page layout (scroll or flip), and one that controls the type of file being loaded (text or image).
 
-I've commented up the files pretty good, so hopefully they'll be fairly easy to follow.
+## Crediting Open Stories
+
+If you use and like Open Stories, please spread the word! Feel free to include the text "Open Stories, created by Josh Powlison"
