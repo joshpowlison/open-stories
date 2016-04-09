@@ -31,7 +31,7 @@ If you'd rather post through storieslc.com instead of with Open Stories, it's al
 
 After download, alter these values in index.html:
 
-1.`<title>` contents (ideally to your story name)
+1. `<title>` contents (ideally to your story name)
 2. `meta` `description` (describe your story)
 3. `storyColor` (to a hex color of your choice)
 4. `language` (probably to "en" for English. This affects the folder you'll be pulling pages from)
