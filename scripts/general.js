@@ -25,7 +25,7 @@ function start(){
 	document.getElementById("storyButton").innerHTML=document.title;
 	document.getElementById("totalPages").innerHTML=totalPages;
 	var sheet=window.document.styleSheets[0];
-	sheet.insertRule('#primary,#profileButton,#pageNumbers,#goToTag,#goToCurrentPage{background-color:#'+storyColor+'}',sheet.cssRules.length);
+	sheet.insertRule('#primary,#goToTag,#goToCurrentPage{background-color:#'+storyColor+'}',sheet.cssRules.length);
 
 	//Make magic happen! Set the first page:
 
