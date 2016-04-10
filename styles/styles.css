@@ -1,0 +1,452 @@
+/***** GENERAL *****/
+
+	body{
+		padding:0;
+		margin:0;
+		font-family:sans-serif;
+	}
+
+	@font-face{
+		font-family:"Aharoni Bold";
+		src:url('../fonts/aharoni-bold.woff');
+	}
+
+/***** HEADER *****/
+
+	header{
+		position:fixed;
+		width:100%;
+		top:0;
+		transition:transform 1s;
+		transform:translate3d(0,0rem,-.1rem);
+		z-index:100;
+	}
+
+	#primary{
+		position:absolute;
+		top:0;
+		width:100%;
+		z-index:100;
+		height:3.2rem;
+		box-shadow:0 0 3px 0px black;
+		display:flex;
+	}
+
+	.headerH{transform:translate3d(0,-3.2rem,0rem);}
+
+	/*** NAVIGATION BUTTONS ***/
+
+		#primary>*{
+			color:white;
+			transform:translateY(0rem);
+		}
+
+		*[data-active="false"]{
+			box-shadow:rgba(0,0,0,0) 0 0 0 2rem inset;
+		}
+
+		*[data-active="true"]{
+			box-shadow:rgba(0,0,0,.143) 0 0 0 2rem inset;
+		}
+
+		#storyButton{
+		   display:flex;
+		   font-family:"Aharoni Bold",sans-serif;
+		   font-weight:bold;
+		   white-space:normal;
+		   margin:0;
+		   line-height:initial;
+		   align-items:center;
+		   padding:.0 .75rem;
+		   border:none;
+		   font-size:1.5rem;
+		   max-width:initial;
+		   background-color:initial;
+		}
+		
+		#profileButton,#pageNumbers{
+		   cursor:pointer;
+		}
+		
+		#storyButton,#profileButton,#pageNumbers{
+			transition:box-shadow .35s,opacity .5s, transform .5s;
+		}
+		
+		#profileButton{
+			margin-left:auto;
+			border:none;
+			font-size:initial;
+			background-color:initial;
+			white-space:initial;
+			max-width:initial;
+			font-weight:initial;
+			height:100%;
+		   width:2.6rem;
+		}
+		
+		#profileButton>div{
+		   display:flex;
+		   flex-direction:column;
+		   justify-content:space-around;
+		   height:100%;
+		   width:100%;
+		   padding-left:.575rem;
+		}
+		
+		/*The three dots in the settings image*/
+		#profileButton>div>div{
+		   background-color:white;
+		   width:.5rem;
+		   height:.5rem;
+		   border-radius:50%;
+		}
+		
+		#pageNumbers{
+			text-align:center;
+			font-size:2rem;
+			font-family:"Aharoni Bold",sans-serif;
+			padding:0 .6rem;
+			margin:0;
+			display:flex;
+			flex-direction:column;
+			justify-content:center;
+			line-height:.7em;
+			white-space:initial;
+			border:none;
+			background-color:initial;
+		}
+		
+		#pageNumbers span{
+			line-height:1.6rem;
+			width:100%;
+			text-align:center;
+		}
+		
+		#pageNumbers span:last-child{
+			border-top:1px solid white;
+		}
+
+		@keyframes buttonFocus{
+			from {transform:scale(1.5);}
+			to  {transform:scale(1);}
+		}
+		
+		/* NAVIGATION DROPDOWNS */
+
+			#storyDropdown{
+				transform:translate(0px,-5000px);
+				transition:transform 1s;
+			}
+
+			#pageNumbers{
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+
+			#notification{
+				background-color:#fff;
+				padding:1rem;
+				text-align:center;
+				margin:0;
+				color:#000;
+				transition:all .5s;
+				position:relative;
+				line-height:1rem;
+				max-width:90%;
+				cursor:pointer;
+				z-index:90;
+				top:3.8rem;
+				right:0;
+				border:1px solid black;
+				border-radius:10rem;
+				float:right;
+				margin:.5rem;
+				box-shadow:0 5px 15px rgba(0,0,0,.25);
+			}
+         
+         .notiUp{
+            transform:scale(0);
+         }
+         
+         .notiDown{
+            transform:scale(1);
+         }
+
+			#notification p{
+				padding:0;
+				margin:0 1rem;
+			}
+
+			#profileDropdown{
+				position:absolute;
+				background-color:rgba(0,0,0,.8);
+				width:45rem;
+				max-width:100%;
+				right:0;
+				z-index:10;
+				color:white;
+				font-family:sans-serif;
+				overflow:auto;
+				transform:translate(0px,-5000px);
+			}
+
+			#profileDropdown>div{
+				padding:2rem;
+			}
+
+			#profileDropdown a{
+				color:white;
+				text-decoration:underline;
+				transition:color .2s;
+			}
+
+			#profileDropdown h2{
+				margin:1rem 0;
+			}
+
+			/*Question Dropdown*/
+			
+			.faqQuestion{
+				cursor:pointer;
+				transition:color .2s;
+				margin:.5rem 0;
+			}
+
+			.faqQuestion[data-active="true"]{
+				text-decoration:underline;
+			}
+			
+			.faqQuestion[data-active="false"]+div{
+				display:none;
+			}
+			
+			.faqQuestion[data-active="true"]+div{
+				display:auto;
+			}
+
+			#profileDropdown>.faqQuestion,
+			#profileDropdown>.faqQuestion+div{
+				padding:0 1rem 1rem 1rem;
+			}
+			
+		/*** PAGE CHANGE DROPDOWN ***/
+
+		#pageChange{
+			left:10%;
+			right:10%;
+			height:3.2rem;
+			position:absolute;
+			z-index:150;
+			display:flex;
+			justify-content:space-between;
+			align-items:center;
+			pointer-events:none;
+			transform:translate(0,-3.2rem);
+			transition:.2s transform, .2s opacity;
+			color:white;
+		}
+
+		#pageChange>hr{
+			margin:0;
+		}
+
+		#pageChange>div:first-child,#pageChange>div:last-child{
+			width:2px;
+			height:1.6rem;
+			background-color:white;
+		}
+
+		#pageChange>hr:nth-child(2){
+			width:100%;
+			border-bottom:1px solid white;
+		}
+
+
+		#goToTag,#goToCurrentPage{
+			border: white solid 2px;
+			padding: .5rem;
+			z-index:200;
+			position:absolute;
+			color: white;
+			pointer-events:none;
+			border-radius:100%;
+			transform:translate(0,-3.2rem);
+			transition:.2s transform,.2s opacity;
+		}
+
+		#goToTag{
+			box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+			font-weight:bold;
+		}
+
+		#goToCurrentPage{
+			background:none;
+			border-style:dashed;
+			z-index:175;
+		}
+
+		.noSelect {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		#pageChangeName{
+			border:white solid 2px;
+			padding:.5rem;
+			z-index:200;
+			position:absolute;
+			color:white;
+			pointer-events:none;
+			border-radius:5px;
+			transform:translate(0,-3.2rem);
+			transition:.2s transform,.2s opacity;
+			background-color:#5e79ce;
+		}
+
+/*****CONTENT*****/
+			
+	main{
+		width:100%;
+		word-wrap:break-word;
+		transition:background-color 2s,color 2s,margin-top 1s;
+	}
+	
+	header:not(.headerH)+main{
+		margin-top:4.4rem;
+	}
+
+	#page{
+		transform:translate3d(0,0,0);
+		z-index:0;
+		margin:0 auto;
+		padding:0;
+			/*default width and space between pages varies from comic to comic, but must always be set in REM (so that mobile screens with high pixel density have the images fill them
+	   margin-bottom always varies; sometimes there may be space between pages.
+	*/
+		max-width:51rem;
+		transition:margin-top 1s,left .75s;
+	}
+
+	#page p,
+	#page h1,#page h2,#page h3,#page h4,#page h5,#page h6,
+	#page ol,
+	#page ul{
+	   padding:0 2rem;
+	}
+	
+	/*Let comics be their true size*/
+	#page>div:not(.storyBlock)>img,
+	#page>div:not(.storyBlock)>svg{
+		width:100%;
+		height:auto;
+		display:block;
+	}
+
+	#page>div{
+		margin:0 auto;
+		max-width:100%;
+		opacity:1;
+		transition:opacity .25s;
+	}
+
+	#page>div:empty{
+		opacity:0;
+	}
+
+	.h{display:none;}
+	hr{clear:both;}
+	.footerPadded{padding:0 5%;}
+
+	main{
+		overflow:hidden;
+	}
+
+	#loadingPrevious,#loadingNext{
+		width:100%;
+		text-align:center;
+		border:1px black solid;
+		border-left:none;
+		border-right:none;
+		font-size:1.5rem;
+		font-weight:bold;
+		cursor:wait;
+		display:block;
+		opacity:1;
+		transition:opacity .25s;
+	}
+
+   #loadingPrevious:not(.amLoading),
+   #loadingNext:not(.amLoading){
+   	display:none;
+   	opacity:0;
+   }
+
+/*****FOOTER*****/
+
+   #footer{
+      padding:.5rem 2rem;
+   }
+
+/*** COMMUNITY ART ***/
+
+	#communityArt{
+		padding:1.5rem 0;
+	}
+	
+	#communityArt h2{
+		text-align:center;
+	}
+	
+	.communityImage{
+		text-align:center;
+	}
+	
+	.communityImage img{
+		max-height:30rem;
+		max-width:100%;
+		padding:0;
+	}
+
+/*Reading Colors*/
+	.readingColors1{
+		background-color:white;
+		color:black;
+	}
+
+	.readingColors1>a:visited{
+		
+	}
+
+	.readingColors2{
+		background-color:black;
+		color:white;
+	}
+
+	.readingColors2 a{
+		color:#6fdbfe;
+	}
+
+	.readingColors2 a:visited{
+		color:gray;
+	}
+
+/*****MEDIA QUERIES*****/
+
+#storyButton{
+   font-size:1.5rem;
+}
+
+/*Reduce story name size when screen is small (mobile)*/
+@media(max-width:50rem){
+	#storyButton{
+		font-size:1rem;
+	}
+}

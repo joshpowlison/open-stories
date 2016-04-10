@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!--Set the title to your story's name-->
+      <title>Story Name</title>
+      <!--Set the description to whatever you want-->
+      <meta name="description" content="Story Description"/>
+      <meta charset="utf-8">
+   		<link rel="stylesheet" href="styles/styles.css">
+   		<!-- - -JAVASCRIPT FILES- - -->
+   		<script>
+   		   //Choose a HEX color value for storyColor (don't include the hash). Pass it as a string.
+   			storyColor="5e79ce";
+   			//Choose a language. This is the folder your website will draw pages from and will (in the future) allow for multiple languages.
+   			language="en";
+   			//Set this to the file extension you're using.
+   			fileType="html";
+   			//Set this to 0 or 1 for no leading zeroes; 2 for 01; 3 for 001; 4 for 0001; and so on.
+   			fileNameLeadingZeroLength=0;
+   		</script>
+   		<script src="scripts/general.js"></script>
+   		<!--Use either text.js (text/multimedia) or comic.js (images)-->
+         <script src="scripts/text.js"></script>
+   		<!--scroll.js is the only type currently available-->
+   		<script src="scripts/scroll.js"></script>
+   </head>
+	<body>
+		<!-- - -HEADER: STAYS THE SAME ACROSS EVERY WEBSITE PAGE- - -->
+		<header>
+			<div>
+				<nav id="primary">
+					<p id="storyButton"></p>
+					<!--Settings Button-->
+					<button id="profileButton" data-active="false" title="Info"><div><div></div><div></div><div></div></div></button>
+					<!--Page Number Button-->
+					<button id="pageNumbers" title="Page number. Click, hold, and drag to change"><span id="pageNumber">0</span><span id="totalPages"></span></button>
+				</nav>
+				<!--Info Dropdown-->
+				<div id="profileDropdown" style="pointer-events:none;" class="backMain">
+				   <div><!-- Keep this extra div here -->
+				      <!-- Put your info and links here! -->
+   				   <h2 class="faqQuestion">Here's how to make an FAQ question!</h2>
+   				   <div>
+   				      <p>Yaay, this is a sample of a question!</p>
+   				   </div>
+   				   <h2 class="faqQuestion">About me</h2>
+   				   <div>
+   				      <p>I'm Josh and I like warm hugs!</p>
+   				   </div>
+   				   <p>Don't forget your <a href="https://twitter.com/joshpowlison" target="_blank">social links</a>! I recommend keeping target="_blank" so that clickers don't lose your site.</p>
+				   </div>
+				</div>
+			</div>
+			<div id="notification" class="notiUp"></div>
+		</header>
+		<main class="readingColors1">
+			<div id="loadingPrevious">Loading...</div>
+			<!--Page holds the pages-->
+			<div id="page" aria-live="polite" aria-relevant="all" aria-atomic="true">
+            <noscript>JavaScript is disabled or malfunctioning. :'( Refresh the webpage or enable Javascript.</noscript></div>
+			<div id="loadingNext">Loading...</div>
+			<div id="footer" class="h">
+			<!-- Include extra text here or leave this blank! It will load after the last page. -->
+			   <h3>Can't get enough?</h3>
+			      <p>Check out my story Dream High School at <a href="https://storieslc.com/dream-high-school/">storieslc.com</a> or follow my fan art or whatever else it is that I do that's also awesome!</p>
+			      <p>Maybe I should've put this info in the info section instead and just let the story abruptly end here! I don't know!</p>
+			</div>
+		</main>
+		<!-- - -SCRIPT TO RUN ON PAGE LOAD- - -->
+		<script>
+			//Measures the number of times loading the page has been attempted
+			runStartupScript=0;
+			function letsStart(){
+				//If we've tried this less than a hundred times:
+				if(runStartupScript<100){
+					//If the general JavaScript file's "start" function has been loaded, and the page's unique script has been loaded, then execute them
+	 				if(typeof start=='function'){
+	 					start();
+	 					//If the general JavaScript file's "start" function has not loaded, wait for 10 milliseconds and check for it again
+	 				}else{
+	 					console.log('Running startup script again');
+	 					setTimeout(function(){letsStart();},10);
+	 					runStartupScript++;
+	 				}
+				//If we've tried grabbing the "start" function from the general JavaScript file 100 times, show an error message
+				}else{
+					document.getElementById("page").innerHTML="<p>Error loading. Please try refreshing the page.</p>";
+				}
+	 		}
+			letsStart();
+		</script>
+	</body>
+</html>
