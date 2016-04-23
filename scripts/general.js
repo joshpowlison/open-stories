@@ -28,8 +28,10 @@ function start(){
 	document.getElementById("storyButton").innerHTML=document.title;
 	document.getElementById("totalPages").innerHTML=totalPages;
 	var sheet=window.document.styleSheets[0];
+	//Add story color into CSS
 	sheet.insertRule('#primary,#goToTag,#goToCurrentPage{background-color:#'+storyColor+'}',sheet.cssRules.length);
-	m.style.maxWidth=pageMaxWidth;
+	//Add max page width into CSS
+	sheet.insertRule('main>div{max-width:'+pageMaxWidth+'}',sheet.cssRules.length);
 
 	//Make magic happen! Set the first page:
 

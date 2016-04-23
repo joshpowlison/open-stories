@@ -311,16 +311,16 @@
 			
 	main{
 		width:100%;
+		min-height:100vh;
 		word-wrap:break-word;
 		transition:background-color 2s,color 2s,margin-top 1s;
 		transform:translate3d(0,0,0);
 		z-index:0;
-		margin:1rem auto;
-		padding:0;
+		padding:1rem 0;
 	}
 	
 	header:not(.headerH)+main{
-		margin-top:4.4rem;
+		padding-top:4.4rem;
 	}
 
 	main>div{
