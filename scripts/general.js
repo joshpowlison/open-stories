@@ -1,9 +1,6 @@
 //Starting variables
 noHash=true;
-canLoadPrevious=true;
-canLoadNext=true;
 var pages=new Array();
-intervalRunning=false;
 
 //The first things to happen; activated once a page loads
 function start(){
@@ -13,7 +10,13 @@ function start(){
 	totalPageNumber.open("POST","total-pages.txt",false); //Yes, that is a synchronous AJAX call. We can use a better solution, but the file's only a few bytes.
 	totalPageNumber.send("dontcache=k"); //Make sure the file will never be cached by passing a value (maybe it's already good though, I'm not sure)
 	totalPages=totalPageNumber.responseText;
-
+	
+	//Add in the page divs that the pages will be put into
+	pageIdDivs="";
+	for(i=1;i<=totalPages;i++){
+		pageIdDivs+="<div id='page-"+i+"'></div>";
+	}
+	document.getElementsByTagName("MAIN")[0].insertAdjacentHTML("afterbegin",pageIdDivs);
 
 	//Make call variables for commonly called elements
 	h=document.getElementsByTagName("nav")[0];
@@ -26,6 +29,7 @@ function start(){
 	document.getElementById("totalPages").innerHTML=totalPages;
 	var sheet=window.document.styleSheets[0];
 	sheet.insertRule('#primary,#goToTag,#goToCurrentPage{background-color:#'+storyColor+'}',sheet.cssRules.length);
+	m.style.maxWidth=pageMaxWidth;
 
 	//Make magic happen! Set the first page:
 
@@ -33,7 +37,7 @@ function start(){
 	setDropdownTop();
 	faqSetup();
 
-   storyButton=document.getElementById("storyButton");
+	storyButton=document.getElementById("storyButton");
 	profileButton=document.getElementById("profileButton");
 	
 	//Add Event Listeners
@@ -52,43 +56,6 @@ function start(){
 			document.getElementsByClassName("faqQuestion")[helpSection].className="dd";
 		}
 	}
-	
-	letsStartPageUnique();
-}
-
-//Sets up the questions in the help section
-function faqSetup(){
-	for(i=0;i<document.getElementsByClassName("faqQuestion").length;i++){
-		document.getElementsByClassName("faqQuestion")[i].dataset.active=false;
-		document.getElementsByClassName("faqQuestion")[i].tabIndex=0;
-		document.getElementsByClassName("faqQuestion")[i].onclick=function(){
-			faqQuestionToggle();
-		};
-	}
-}
-
-runStartupScriptUnique=0;
-function letsStartPageUnique(){
-	//If we've tried this less than a hundred times:
-	if(runStartupScriptUnique<100){
-		//If the general JavaScript file's "start" function has been loaded, and the page's unique script has been loaded, then execute them
-		if(typeof startFormUnique=='function' && typeof loadPage=='function'){
-			startFormUnique();
-			startStoryScript();
-		}else{
-	 		console.log('Running startup script 2 again');
-	 		setTimeout(function(){letsStartPageUnique();},10);
-	 		runStartupScriptUnique++;
-	 	}
-	}else{
-		notificationOpen("Failed to load scripts; try refreshing the page.");
-	}
-}
-
-//Load in the story's unique properties
-function startStoryScript(){
-	
-	/////STORY PAGES ONLY/////
 	
 	/////CHANGE PAGE NUMBER/////
 	
@@ -126,9 +93,12 @@ function startStoryScript(){
 			if(hashValue=="footer"){
 				pageNumber="footer";
 			}else{
-			notificationOpen("The link tried to take you to a nonexistant page "+'"'+(location.hash).replace("#","")+'"'+", so we took you to your last page instead.");
+				notificationOpen("The link tried to take you to a nonexistant page "+'"'+(location.hash).replace("#","")+'"'+", so we took you to the last page instead.");
+				pageNumber=totalPages;
 			}
 		}
+	}else{
+		pageNumber=totalPages;
 	}
 	
 	//Keep track of movement so that if the reader is confused how to go back, I can help them.
@@ -136,6 +106,17 @@ function startStoryScript(){
 	pageNumberStart=pageNumber;
 
 	changePage(pageNumber);
+}
+
+//Sets up the questions in the help section
+function faqSetup(){
+	for(i=0;i<document.getElementsByClassName("faqQuestion").length;i++){
+		document.getElementsByClassName("faqQuestion")[i].dataset.active=false;
+		document.getElementsByClassName("faqQuestion")[i].tabIndex=0;
+		document.getElementsByClassName("faqQuestion")[i].onclick=function(){
+			faqQuestionToggle();
+		};
+	}
 }
 
 //Toggles an FAQ's answer display
@@ -243,13 +224,6 @@ function updateFooter(){
 	f.className="";
 }
 
-//Shows an object that lets the user know that the previous/next page is loading
-function loadingShow(loadingObject,loadingPage){
-	if(document.getElementById("page-"+loadingPage).innerHTML==""){
-		loadingObject.className="amLoading";
-	}
-}
-
 //Allows the user to change the page
 /*****
  * Add changing the page number with accessibility; requires either just pressing the space key or pressing and holding
@@ -352,10 +326,11 @@ function choosePage(thisEvent){
 	}
 	
 	//Check if holding farther than the edge; if so, go to footer instead
-	if(thisEvent.clientX>changeBarWidth+changeBarLeft*1.6){
+	//Make sure there's a footer to go to, otherwise skip this step
+	if(f.textContent.replace(/\s*/,"")!=="" && thisEvent.clientX>changeBarWidth+changeBarLeft*1.6){
 		newPageNumber=totalPages+1;
 		goToTag.innerHTML="+";
-	}else{
+	}else{//If within the bounds
 		
 		//make newPageNumber a percentage of the width of the screen compared to where the cursor is
 		newPageNumber=(thisEvent.clientX-changeBarLeft)/changeBarWidth;
@@ -387,7 +362,13 @@ function choosePage(thisEvent){
 	//Get the position this way:
 	//Width of parent*percentage of of total pages the page you're going to is
 	//Subtract half of the element's width so it centers
-	goToTag.style.transform="translate("+String(document.getElementById("pageChange").getBoundingClientRect().width*((newPageNumber-1)/(totalPages-1))-goToTag.getBoundingClientRect().width/2+changeBarLeft)+"px,0.4rem)";
+	
+	//If going to a page
+	if(newPageNumber<=totalPages){
+	   goToTag.style.transform="translate("+String(document.getElementById("pageChange").getBoundingClientRect().width*((newPageNumber-1)/(totalPages-1))-goToTag.getBoundingClientRect().width/2+changeBarLeft)+"px,0.4rem)";
+	}else{//If going to the footer, move a little over from the far edge
+      goToTag.style.transform="translate("+String(document.getElementById("pageChange").getBoundingClientRect().width-goToTag.getBoundingClientRect().width/2+changeBarLeft*1.4)+"px,0.4rem)";
+	}
 	
 }
 
@@ -454,6 +435,24 @@ function buttonFocus(input){
 	setTimeout(function(){input.style.animation="buttonFocus .5s cubic-bezier(.05,.2,.77,1.3) 0s 3";},100);
 }
 
+//Update the page number in the top-right corner
+function pageNumberUpdate(pageNumberShow){
+	history.replaceState({},"",(window.location.href).split("#")[0]+"#"+pageNumberShow);
+	pageNumberTag.innerHTML=pageNumberShow;
+	
+	//If we haven't just loaded the page, set the bookmark (that way visiting a page with a link won't cause the reader to lose their previous spot)
+	if(noHash){
+		bookmark();
+	}
+	
+	//Help the user with a notification if it looks like they're trying to get back to the beginning of the story
+	if(movingFromStart && pageNumberShow<pageNumberStart-2){
+		notificationOpen("To go to any page, just click the page number, hold, and drag left!");
+		buttonFocus(pageNumbers);
+		movingFromStart=false;
+	}
+}
+
 /////FUNCTIONS NOT IN USE/////
 
 //A function not currently in use that allows the user to hide the header
@@ -497,4 +496,79 @@ function setReadingColors(newColorPalette){
 //A function not currently in use that allows the user's spot to be saved. Set up with cookies.
 function bookmark(bookmarkThisPage){
 
+}
+
+/////LOADING PAGES/////
+function loadPage(fileNumber){
+	if(typeof pages[fileNumber]==='undefined'){
+		if(parseInt(fileNameLeadingZeroLength)==0){
+			fileName=fileNumber;
+		}else{
+			fileName=padZero(fileNumber,fileNameLeadingZeroLength);
+		}
+		
+		switch(fileExtension){
+			//Text
+			case "html":case "php":
+				pages[fileNumber]=new XMLHttpRequest();
+				pages[fileNumber].open("POST",language+"/"+fileName+"."+fileExtension,true);
+				pages[fileNumber].send();
+				
+				pages[fileNumber].onreadystatechange=function(){
+					if(pages[fileNumber].readyState==4){
+						if(pages[fileNumber].status==200){
+							pages[fileNumber]=autoformat(pages[fileNumber].responseText);
+							insertPage(fileNumber,pages[fileNumber]);
+						}else{
+							pages[fileNumber]=null;
+							insertPage(fileNumber,"<span style='color:red;'>Page "+fileNumber+" wasn't found (404 Error)!");
+						}
+					}
+				}
+				break;
+			//Image
+			case "jpeg":case "jpg":case "png":
+				pages[fileNumber]=new Image();
+				pages[fileNumber].src=language+"/"+fileNumber+"."+fileExtension;
+				pages[fileNumber].alt="Part "+fileNumber;
+				pages[fileNumber].onload=function(){
+					insertPage(fileNumber,"<img src='"+pages[fileNumber].src+"' alt='"+pages[fileNumber].alt+"'>");
+				}
+				break;
+			//Audio
+			case "mp3":
+				pages[fileNumber]=new Audio();
+				pages[fileNumber].src=language+"/"+fileNumber+"."+fileExtension;
+				pages[fileNumber].onload=function(){
+					insertPage(fileNumber,"<audio controls><source src='"+pages[fileNumber].src+"' type='audio/mpeg' preload='auto'>Your browser doesn't support audio on this site. Sorry. :(</audio>");
+				}
+				break;
+			//Video
+			case "mp4":
+				pages[fileNumber]=new Video();
+				pages[fileNumber].src=language+"/"+fileNumber+"."+fileExtension;
+				pages[fileNumber].onload=function(){
+					insertPage(fileNumber,"<video controls><source src='"+pages[fileNumber].src+"' type='video/mp4'>Your browser doesn't support video on this site. Sorry. :(</video>");
+				}
+				break;
+		}
+		
+	}
+}
+
+//Autoformat
+function autoformat(textInput){
+	if((textInput.toLowerCase()).search("script>")>-1 || (textInput.toLowerCase()).search("<script")>-1){return "<em><strong>This page appears to be corrupted. Our ninja-bots have blocked it for your safety.</strong></em>";}
+	//If text includes [AUTOFORMAT] automatically format the file
+	if(textInput.indexOf("[AUTOFORMAT]")>-1){
+		return textInput
+		   .replace(/(?!\[AUTOFORMAT\]\s*<h[r123456])\[AUTOFORMAT\]\s*/,"<p>") //Take care of AUTOFORMAT if next tag is a heading or hr tag
+		   .replace(/\[AUTOFORMAT\]\s*/,"") //Take care of AUTOFORMAT
+	      .replace(/(?!\n+<h[r123456])\n+(?!\n+<h[r123456])/g,"</p><p>") //Add p tags where there aren't any between empty spaces
+	      //.replace(/(?!\n+<h[r123456])\n+/g,"<p>") //Add opening p tags where there aren't any following a special tag
+	      //.replace(/(?!h[r123456]\n+)\n+/g,"</p>") //Add closing p tags where there aren't any before a special tag
+	      +"</p>";
+	}else{
+		return textInput;
+	}
 }

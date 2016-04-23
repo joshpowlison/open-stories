@@ -1,31 +1,30 @@
 <!DOCTYPE html>
+<!-- Open Stories is built from the site code for storieslc.com and may be updated regularly. Check out https://github.com/Josh-Powlison/open-stories/ to get up to date! -->
 <html lang="en">
    <head>
-      <!--Set the title to your story's name-->
-      <title>Story Name</title>
-      <!--Set the description to whatever you want-->
-      <meta name="description" content="Story Description"/>
+      <title>STORY NAME HERE</title>
+      <meta name="description" content="STORY DESCRIPTION HERE"/>
       <meta charset="utf-8">
    		<link rel="stylesheet" href="styles/styles.css">
-   		<!-- - -JAVASCRIPT FILES- - -->
+   		<!--JavaScript-->
    		<script>
-   		   //Choose a HEX color value for storyColor (don't include the hash). Pass it as a string.
+			//Choose a HEX color value for storyColor (don't include the hash). Pass it as a string.
    			storyColor="5e79ce";
-   			//Choose a language. This is the folder your website will draw pages from and will (in the future) allow for multiple languages.
+   			//Set a language. English is "en". Each language has a shortened code I recommend you use for future compatability. Check out all of the language codes here: http://www.w3schools.com/tags/ref_language_codes.asp
    			language="en";
    			//Set this to the file extension you're using.
-   			fileType="html";
+   			fileExtension="html";
    			//Set this to 0 or 1 for no leading zeroes; 2 for 01; 3 for 001; 4 for 0001; and so on.
    			fileNameLeadingZeroLength=0;
+			//A page's maximum width. This is set for every medium: novels, comics, video, etc. Can be set in px, em, rem, whatever you want! I strongly recommend rem because of how it works cross-device. Google for more info.
+			//If you're confused, just increase the number to get your story pages bigger, decrease it to get them smaller. Stop adjusting when you like the page width.
+			pageMaxWidth="51rem";
    		</script>
    		<script src="scripts/general.js"></script>
-   		<!--Use either text.js (text/multimedia) or comic.js (images)-->
-         <script src="scripts/text.js"></script>
-   		<!--scroll.js is the only type currently available-->
+   		<!--Sets the type of page changing. Scroll is the default and currently only one available; it sets the site up for infinite scroll reading.-->
    		<script src="scripts/scroll.js"></script>
    </head>
-	<body>
-		<!-- - -HEADER: STAYS THE SAME ACROSS EVERY WEBSITE PAGE- - -->
+	<body onload="start()">
 		<header>
 			<div>
 				<nav id="primary">
@@ -37,57 +36,39 @@
 				</nav>
 				<!--Info Dropdown-->
 				<div id="profileDropdown" style="pointer-events:none;" class="backMain">
-				   <div><!-- Keep this extra div here -->
-				      <!-- Put your info and links here! -->
-   				   <h2 class="faqQuestion">Here's how to make an FAQ question!</h2>
-   				   <div>
-   				      <p>Yaay, this is a sample of a question!</p>
-   				   </div>
-   				   <h2 class="faqQuestion">About me</h2>
-   				   <div>
-   				      <p>I'm Josh and I like warm hugs!</p>
-   				   </div>
-   				   <p>Don't forget your <a href="https://twitter.com/joshpowlison" target="_blank">social links</a>! I recommend keeping target="_blank" so that clickers don't lose your site.</p>
+					<div><!-- Keep this extra div here -->
+					<!-- Put your info and links here! -->
+					<h2 class="faqQuestion">Here's how to make an FAQ question!</h2>
+					<div>
+						<p>Yaay, this is a sample of a question! Just copy from that h2 thing to the backwards-slash div thing, and paste it ahead!</p>
+						<p>Have whatever you want in here!</p>
+					</div>
+					<h2 class="faqQuestion">About me</h2>
+					<div>
+						<p>I'm Josh and I like warm hugs! But not too warm. 'Cause that probably means you farted and are hugging me backwards. Which is <em>weird</em>.</p>
+						<p>You can include an image of your own gorgeous face here if you like!</p>
+					</div>
+					<p>Don't forget your <a href="https://twitter.com/joshpowlison" target="_blank">social links</a>! I recommend keeping target="_blank" so that clickers don't lose your site.</p>
 				   </div>
 				</div>
 			</div>
 			<div id="notification" class="notiUp"></div>
 		</header>
-		<main class="readingColors1">
-			<div id="loadingPrevious">Loading...</div>
-			<!--Page holds the pages-->
-			<div id="page" aria-live="polite" aria-relevant="all" aria-atomic="true">
-            <noscript>JavaScript is disabled or malfunctioning. :'( Refresh the webpage or enable Javascript.</noscript></div>
-			<div id="loadingNext">Loading...</div>
-			<div id="footer" class="h">
-			<!-- Include extra text here or leave this blank! It will load after the last page. -->
-			   <h3>Can't get enough?</h3>
-			      <p>Check out my story Dream High School at <a href="https://storieslc.com/dream-high-school/">storieslc.com</a> or follow my fan art or whatever else it is that I do that's also awesome!</p>
-			      <p>Maybe I should've put this info in the info section instead and just let the story abruptly end here! I don't know!</p>
+		<main class="readingColors1" aria-live="polite" aria-relevant="all" aria-atomic="true">
+            <noscript>JavaScript is disabled or malfunctioning. :'( Refresh the webpage or enable Javascript.</noscript>
+			<div id="footer">
+			<!-- Include extra text here or leave it blank! It will load after the last page. -->
+				<h3>Do you like having text after your story?</h3>
+					<p>Because I do! You could do stuff like:</p>
+					<p>"Check out my other story <a href="https://storieslc.com/dream-high-school/">Dream High School</a>!"</p>
+					<p>"I made this awesome fan art that I'm totally going to include below:"</p>
+					<p>"Bored? Here are a few of my favorite things!:"</p>
+					<p>You can also remove the text inside the footer and it won't be included! Maybe you want all of your info included in the menu, I don't know! (But I recommend "About Me" and all that in the menu so they can access it at any point when reading the story)</p>
+					<p>You can also just let the reader know that the story's over, by doing something like:</p>
+					<hr>
+					<p style="text-align:center;"><strong>THANKS FOR READING!</strong></p>
+					<p style="text-align:center;">This story updates Mondays, Thursdays, and Valentine's Days! Come back later for more awesome!</p>
 			</div>
 		</main>
-		<!-- - -SCRIPT TO RUN ON PAGE LOAD- - -->
-		<script>
-			//Measures the number of times loading the page has been attempted
-			runStartupScript=0;
-			function letsStart(){
-				//If we've tried this less than a hundred times:
-				if(runStartupScript<100){
-					//If the general JavaScript file's "start" function has been loaded, and the page's unique script has been loaded, then execute them
-	 				if(typeof start=='function'){
-	 					start();
-	 					//If the general JavaScript file's "start" function has not loaded, wait for 10 milliseconds and check for it again
-	 				}else{
-	 					console.log('Running startup script again');
-	 					setTimeout(function(){letsStart();},10);
-	 					runStartupScript++;
-	 				}
-				//If we've tried grabbing the "start" function from the general JavaScript file 100 times, show an error message
-				}else{
-					document.getElementById("page").innerHTML="<p>Error loading. Please try refreshing the page.</p>";
-				}
-	 		}
-			letsStart();
-		</script>
 	</body>
 </html>

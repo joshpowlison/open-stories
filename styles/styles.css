@@ -134,11 +134,6 @@
 		
 		/* NAVIGATION DROPDOWNS */
 
-			#storyDropdown{
-				transform:translate(0px,-5000px);
-				transition:transform 1s;
-			}
-
 			#pageNumbers{
 				-webkit-touch-callout: none;
 				-webkit-user-select: none;
@@ -169,13 +164,13 @@
 				box-shadow:0 5px 15px rgba(0,0,0,.25);
 			}
          
-         .notiUp{
-            transform:scale(0);
-         }
-         
-         .notiDown{
-            transform:scale(1);
-         }
+			.notiUp{
+				transform:scale(0);
+			}
+			
+			.notiDown{
+				transform:scale(1);
+			}
 
 			#notification p{
 				padding:0;
@@ -318,47 +313,57 @@
 		width:100%;
 		word-wrap:break-word;
 		transition:background-color 2s,color 2s,margin-top 1s;
+		transform:translate3d(0,0,0);
+		z-index:0;
+		margin:1rem auto;
+		padding:0;
 	}
 	
 	header:not(.headerH)+main{
 		margin-top:4.4rem;
 	}
 
-	#page{
-		transform:translate3d(0,0,0);
-		z-index:0;
-		margin:0 auto;
-		padding:0;
-			/*default width and space between pages varies from comic to comic, but must always be set in REM (so that mobile screens with high pixel density have the images fill them
-	   margin-bottom always varies; sometimes there may be space between pages.
-	*/
-		max-width:51rem;
-		transition:margin-top 1s,left .75s;
+	main>div{
+		display:none;
 	}
 
-	#page p,
-	#page h1,#page h2,#page h3,#page h4,#page h5,#page h6,
-	#page ol,
-	#page ul{
+	main>div.showPage{
+		display:block;
+	}
+
+	#footer:not(.showPage){
+		display:none;
+	}
+
+	/*Text settings*/
+	main p,
+	main h1,main h2,main h3,main h4,main h5,main h6,
+	main ol,
+	main ul{
 	   padding:0 2rem;
 	}
 	
+	/*Audio settings*/
+	main audio{
+		width:100%;
+	}
+	
 	/*Let comics be their true size*/
-	#page>div:not(.storyBlock)>img,
-	#page>div:not(.storyBlock)>svg{
+	main>div:not(.storyBlock)>img,
+	main>div:not(.storyBlock)>svg{
 		width:100%;
 		height:auto;
 		display:block;
 	}
 
-	#page>div{
+	main>div{
 		margin:0 auto;
 		max-width:100%;
 		opacity:1;
 		transition:opacity .25s;
 	}
 
-	#page>div:empty{
+	main>div:empty{
 		opacity:0;
 	}
 
@@ -389,13 +394,7 @@
    	display:none;
    	opacity:0;
    }
-
-/*****FOOTER*****/
-
-   #footer{
-      padding:.5rem 2rem;
-   }
-
+  
 /*** COMMUNITY ART ***/
 
 	#communityArt{
