@@ -1,19 +1,23 @@
 # Open Stories
-A lightweight, minimalist, simple infinite scroll website solution for web serial novels and webcomics. Based on storieslc.com but for single-story use. Extremely easy to setup and use!
+A lightweight and minimalist CMS for seamless reading of web serial novels and webcomics. Based on storieslc.com. You can read your story with infinite scroll or by turning pages- either way, pages are preloaded!
+
+This isn't a Wordpress plugin, it's a standalone CMS. But since it's Open Source, you can add in everything you need!
+
+Minimal HTML knowledge required for a basic site.
 
 ## Features
 
-**Very easy to use** and since all the code's here, you can add whatever features you want! You can set up in less than 10 minutes if you know what you want.
+**Very easy to use** and, of course, you can add whatever features you want! You can get up in less than 10 minutes if you know what you want.
 
 **Mobile friendly** with both serial novels and comics- and a mirrored experience between desktop and mobile!
 
 **Bi-directional infinite scroll** lets you scroll up to previous pages and down to further pages with hardly any page "jerk"!
 
+Alternatively, **pre-loaded pages with page flip** let you keep reading without waiting for the next page to load!
+
 **Revolutionary page-changing** lets you click on the page number and choose any page to jump to instantly!
 
-**Minimalist HUD** means a clean experience for your readers and less work for you!
-
-**Hashtags** let you share the website and direct readers to any page you want. You'll notice that when you change pages, the hashtag in the URL changes; simply share the URL with any hashtag and when somebody follows it, they will start on the page in the hashtag! This makes it really easy to share your current page. Remove the hashtag and they'll start on the last page.
+**Minimalist HUD** means a clean experience for your readers and less extraneous design work for you!
 
 ## Examples
 
@@ -24,8 +28,6 @@ The below examples are from storieslc.com which *does* have some extra features 
 [Little Nemo in Slumberland: Webcomic with over 400 pages](https://storieslc.com/little-nemo-in-slumberland/)
 
 [0000 Is Ma Faffritt Colour of teh Alfabeht: SVG webcomic](https://storieslc.com/0000-is-ma-faffritt-colour-of-teh-alfabeht/)
-
-If you'd rather post through storieslc.com instead of with Open Stories, it's also free and you can contact Josh Powlison about it at [josh@storieslc.com](mailto:josh@storieslc.com) for more info.
 
 ## Open Stories vs Stories
 
@@ -51,7 +53,7 @@ Both are free.
 - User accounts/users can save their spot across devices
 - Automatically scheduled story updates
 
-If you want to work with Stories instead of Open Stories, contact Josh Powlison at josh@storieslc.com.
+If you want to work with Stories instead of Open Stories, contact Josh Powlison at [josh@storieslc.com](mailto:josh@storieslc.com).
 
 ## Setup
 
@@ -60,11 +62,9 @@ After download, alter these values in index.html:
 1. `<title>` contents (ideally to your story name)
 2. `meta` `description` (describe your story)
 3. `storyColor` (to a hex color of your choice)
-4. `language` (probably to "en" for English. This affects the folder you'll be pulling pages from)
+4. `language` (if other than English. This affects the folder you'll be pulling pages from)
 5. `fileType` (probably to "html", "jpeg", or "png")
 6. `fileNameLeadingZeroLength` (affects use of leading zeroes in file names)
-
-If you're creating a comic, you'll also want to load comic.js instead of text.js, unless you're loading your comic pages through HTML files (perhaps, for example, if you're working with SVGs).
 
 You'll also want to update your help section and footer. The footer appears after the last page of your story. You don't need to include a footer if you don't want it.
 
@@ -73,6 +73,12 @@ Open totalPages.txt and change its value to the total number of pages. Change it
 ## Updating the number of pages
 
 Just edit and reupload total-pages.txt. But be careful: people can still access your pages if they know the URLs for them, whether or not total-pages.txt includes them. If you upload pages earlier, sneaky people can easily find them.
+
+## Linking to a particular page
+
+Just add a hashtag with a number to your url to send your users to any page. For example, on my site (https://storieslc.com/dream-high-school/#1)[https://storieslc.com/dream-high-school/#1] will take you to page 1 while (https://storieslc.com/dream-high-school/#50)[https://storieslc.com/dream-high-school/#50] will take you to page 50.
+
+A url without a hashtag will take users to the last page or, once bookmarks are set up, to the last page they were reading.
 
 ## Setting up FAQ and answers
 
@@ -93,7 +99,7 @@ Pages are numbered like so: 1.html, 2.html, 3.html...
 
 But if you're using leading zeroes, make sure to ALWAYS use leading zeroes! 001.html, 002.html, 003.html...
 
-And always use the same extension- beware especially of .jpeg vs .jpg. The website won't find files with slightly different extensions.
+And always use the same extension- beware especially of .jpeg vs .jpg. The website won't find files with slightly different extensions. If you have to use just 1 extension for page, use .html
 
 Once you've created pages, just put them into your language folder for the website!
 
@@ -101,23 +107,21 @@ If you're using images, the process is the same, it's just 1.png, 2.png, 3.png i
 
 ## Text file formatting
 
-If you know HTML, you can just write in HTML. If you don't, you can write `[AUTOFORMAT]` at the beginning of your document, double-space, and put in whatever text you want and it'll be formatted automatically (you can still add tags in such as `<strong>` and `<span>`s).
+If you don't know HTML, you can write `[AUTOFORMAT]` at the beginning of your document, double-space, and put in whatever text you want and it'll be formatted automatically (you can still add tags in such as `<strong>` and `<span>`s).
 
 You can use `[AUTOFORMAT]` in one page and go without it in the next.
 
+If you do know HTML, just write in raw HTML. Note that you don't need `<html>`, `<head>`, or `<body>` tags- in fact, those can throw errors. Just start with your `<h1>` or `<p>` tags, just whatever you'd put between your `<body>` tags.
+
 ## What about commenting?
 
-That's not available right now, but you *can* add a Twitter feed with a hashtag of your story to the footer of your story. That way readers can check out a general story conversation and jump in on it too (and connect with you on Twitter)!
+Commenting on a per-page basis isn't available out of the box, but you should be able to add Disqus, a Twitter feed, or other commenting software to the footer of your story pretty easily.
 
 ## Hosting
 
 You gotta host your Open Stories site yourself. If you're cool with yourwebsitename.neocities.com, I strongly recommend checking out [Neocities](https://neocities.org/)- but you're limited in space, so if you're doing a webcomic you'll need something else.
 
-I strongly recommend [A Small Orange](http://asmallorange.7eer.net/c/184285/185398/3107) for story hosting, and not just cause that's an affiliate link. They're seriously boss in both prices and customer service.
-
-## JavaScript files
-
-There are 3 JavaScript files: one that controls general settings and is always required, one that controls the type of page layout (scroll or flip), and one that controls the type of file being loaded (text or image).
+I strongly recommend [A Small Orange](http://asmallorange.7eer.net/c/184285/185398/3107) for story hosting, and not just cause that's an affiliate link! They're seriously boss in both prices and customer service. Even if that wasn't an affiliate link I'd be like "yeah A Small Orange!"
 
 ## Crediting Open Stories
 
