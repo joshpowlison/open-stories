@@ -76,7 +76,7 @@ Just edit and reupload total-pages.txt. But be careful: people can still access 
 
 ## Linking to a particular page
 
-Just add a hashtag with a number to your url to send your users to any page. For example, on my site (https://storieslc.com/dream-high-school/#1)[https://storieslc.com/dream-high-school/#1] will take you to page 1 while (https://storieslc.com/dream-high-school/#50)[https://storieslc.com/dream-high-school/#50] will take you to page 50.
+Just add a hashtag with a number to your url to send your users to any page. For example, on my site [https://storieslc.com/dream-high-school/#1](https://storieslc.com/dream-high-school/#1) will take you to page 1 while [https://storieslc.com/dream-high-school/#50](https://storieslc.com/dream-high-school/#50) will take you to page 50.
 
 A url without a hashtag will take users to the last page or, once bookmarks are set up, to the last page they were reading.
 
