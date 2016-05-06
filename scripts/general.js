@@ -7,8 +7,8 @@ function start(){
    
 	//Load the total number of pages as specified in totalPages.js
 	totalPageNumber=new XMLHttpRequest();
-	totalPageNumber.open("POST","total-pages.txt",false); //Yes, that is a synchronous AJAX call. We can use a better solution, but the file's only a few bytes.
-	totalPageNumber.send("dontcache=k"); //Make sure the file will never be cached by passing a value (maybe it's already good though, I'm not sure)
+	totalPageNumber.open("GET","total-pages.txt",false); //Yes, that is a synchronous AJAX call. We can use a better solution, but the file's only a few bytes.
+	totalPageNumber.send();
 	totalPages=totalPageNumber.responseText;
 	
 	//Add in the page divs that the pages will be put into
@@ -513,7 +513,7 @@ function loadPage(fileNumber){
 			//Text
 			case "html":case "php":
 				pages[fileNumber]=new XMLHttpRequest();
-				pages[fileNumber].open("POST",language+"/"+fileName+"."+fileExtension,true);
+				pages[fileNumber].open("GET",language+"/"+fileName+"."+fileExtension,true);
 				pages[fileNumber].send();
 				
 				pages[fileNumber].onreadystatechange=function(){
